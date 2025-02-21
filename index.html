@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFHL Challenge</title>
+</head>
+<body>
+    <h1>BFHL Challenge</h1>
+    <textarea id="jsonInput" rows="4" cols="50" placeholder='Enter JSON e.g. { "data": ["A", "1", "B"] }'></textarea>
+    <button onclick="sendRequest()">Submit</button>
+    <pre id="output"></pre>
+
+    <script>
+        async function sendRequest() {
+            const input = document.getElementById("jsonInput").value;
+            try {
+                const response = await fetch("https://your-replit-url/bfhl", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: input
+                });
+                const data = await response.json();
+                document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                alert("Invalid JSON or API Error");
+            }
+        }
+    </script>
+</body>
+</html>
